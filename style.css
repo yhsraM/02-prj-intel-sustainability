@@ -1,1 +1,94 @@
-/* Add your CSS here */
+/*
+  Set a background gradient that starts as light blue in the top left
+  and becomes a darker blue as you scroll down the page.
+*/
+body {
+  /* Linear gradient from top left to bottom right */
+  background: linear-gradient(135deg, #e0f2ff 0%, #1976d2 100%);
+  /* Make sure the gradient covers the whole page */
+  min-height: 100vh;
+  margin: 0;
+  /* Optional: smooth font for better look */
+  font-family: Arial, sans-serif;
+}
+
+/* You can add more styles below for other elements */
+
+/*
+  Add styles for the timeline cards so that when you hover over the heading (h2 or h3),
+  the image and the information (paragraph) slide in from the left.
+*/
+
+/* First, hide the image and paragraph by moving them to the left and making them invisible */
+section div img,
+section div p {
+  /* Start hidden to the left */
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+/* When you hover over the card's heading, show the image and paragraph */
+section div:hover img,
+section div:hover p {
+  /* Slide in to normal position */
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Make sure the card itself is positioned so the hover works */
+section div {
+  /* Add some space and background for clarity */
+  background: rgba(255,255,255,0.7);
+  margin: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  /* Make the transition look smooth */
+  transition: box-shadow 0.3s;
+}
+
+section div:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+/* Optional: make sure headings are easy to hover */
+section div h2, section div h3 {
+  cursor: pointer;
+}
+
+/* Center the main heading and subheading, and make them larger */
+header h1 {
+  /* Center the main heading */
+  text-align: center;
+  /* Make the font bigger */
+  font-size: 2.5em;
+  margin-top: 20px;
+}
+
+header p {
+  /* Center the subheading */
+  text-align: center;
+  /* Make the font bigger */
+  font-size: 1.3em;
+  max-width: 700px;
+  margin: 15px auto;
+}
+
+/* Remove the width setting for the Intel logo so it uses its original size */
+header img {
+  /* Remove width and height so the image displays at its natural size */
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px auto; /* Still center the logo above the heading */
+}
+
+/* Add a comment for students */
+/*
+  When you move your mouse over a card, the image and information will slide in from the left.
+  This uses simple CSS transitions and the :hover selector.
+
+  The main heading (h1) and subheading (p) in the header are now centered and larger.
+  'text-align: center' centers the text, and 'font-size' makes it bigger.
+*/
