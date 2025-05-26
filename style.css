@@ -39,11 +39,11 @@ section div:hover p {
 /* Make sure the card itself is positioned so the hover works */
 section div {
   /* Add some space and background for clarity */
-  background: rgba(255,255,255,0.7);
+  background: rgba(0, 0, 0, 0);
   margin: 20px;
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(100, 100, 100, 0);
   /* Make the transition look smooth */
   transition: box-shadow 0.3s;
 
