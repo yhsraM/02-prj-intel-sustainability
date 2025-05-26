@@ -46,6 +46,85 @@ section div {
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   /* Make the transition look smooth */
   transition: box-shadow 0.3s;
+
+  /* Use flexbox to arrange children (image and p) in a row */
+  display: flex;
+  flex-direction: column; /* Stack headings, then content */
+  align-items: stretch;
+}
+
+/* New wrapper for image and text content */
+.card-content {
+  position: relative;
+  z-index: 1;
+  /* Add some padding so text is readable */
+  padding: 20px;
+  width: 100%;
+}
+
+/* Make the card use the background image */
+section div {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Add a dark overlay for readability */
+section div::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 0;
+}
+
+/* Hide the image tag (not needed anymore) */
+section div img {
+  display: none;
+}
+
+/* Slide in the text only */
+.card-content h2,
+.card-content h3,
+.card-content p {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+section div:hover .card-content h2,
+section div:hover .card-content h3,
+section div:hover .card-content p {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Make sure text is readable and spaced */
+.card-content h2, .card-content h3 {
+  margin: 0 0 8px 0;
+  text-shadow: 1px 1px 4px #000;
+}
+.card-content p {
+  margin: 0;
+  text-shadow: 1px 1px 4px #000;
+}
+
+/* When the screen is small, stack the image and text vertically */
+@media (max-width: 500px) {
+  .card-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  section div img {
+    max-width: 90%;
+  }
 }
 
 section div:hover {
@@ -78,17 +157,45 @@ header p {
 /* Remove the width setting for the Intel logo so it uses its original size */
 header img {
   /* Remove width and height so the image displays at its natural size */
-  width: auto;
+  width: 50%; /* Adjust as needed */
   height: auto;
   display: block;
   margin: 0 auto 10px auto; /* Still center the logo above the heading */
 }
 
+/*
+  Arrange the timeline cards in rows of three using simple flexbox.
+  This is beginner-friendly and does not use CSS grid.
+*/
+
+section {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  justify-content: center; /* Center the rows */
+  gap: 24px; /* Space between cards */
+}
+
+section div {
+  flex: 0 1 30%; /* Each card takes about 1/3 of the row */
+  min-width: 260px; /* Prevent cards from getting too small */
+  max-width: 350px; /* Prevent cards from getting too wide */
+  box-sizing: border-box;
+}
+
 /* Add a comment for students */
+/*
+  The cards are now arranged in rows of three using flexbox.
+  'flex-wrap: wrap' lets the cards move to the next line if needed.
+  'flex: 0 1 30%' makes each card about 1/3 of the row.
+*/
+
 /*
   When you move your mouse over a card, the image and information will slide in from the left.
   This uses simple CSS transitions and the :hover selector.
 
   The main heading (h1) and subheading (p) in the header are now centered and larger.
   'text-align: center' centers the text, and 'font-size' makes it bigger.
+
+  Now, the image and the paragraph in each card will appear side by side.
+  This uses display: flex, which is a simple way to arrange items in a row.
 */
