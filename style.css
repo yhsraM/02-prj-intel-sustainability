@@ -116,6 +116,17 @@ section div:hover .card-content p {
   text-shadow: 1px 1px 4px #000;
 }
 
+/* Make the card text a bit smaller for better fit */
+.card-content h2 {
+  font-size: 1.1em;
+}
+.card-content h3 {
+  font-size: 1em;
+}
+.card-content p {
+  font-size: 0.95em;
+}
+
 /* When the screen is small, stack the image and text vertically */
 @media (max-width: 500px) {
   .card-content {
@@ -198,4 +209,35 @@ section div {
 
   Now, the image and the paragraph in each card will appear side by side.
   This uses display: flex, which is a simple way to arrange items in a row.
+*/
+
+/*
+  Add tap-to-reveal for card text on mobile devices.
+  On small screens, tapping a card will show or hide its text.
+  This uses a simple CSS class and a little JavaScript for beginners.
+*/
+
+@media (max-width: 600px) {
+  /* By default, hide the text on mobile */
+  .card-content h2,
+  .card-content h3,
+  .card-content p {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  /* When the card is tapped (has .show-text), show the text */
+  section div.show-text .card-content h2,
+  section div.show-text .card-content h3,
+  section div.show-text .card-content p {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Add a comment for students */
+/*
+  On mobile, tapping a card will show or hide its text.
+  This is done by toggling the .show-text class with JavaScript.
 */

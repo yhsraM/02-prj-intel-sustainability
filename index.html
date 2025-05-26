@@ -152,5 +152,23 @@
     </div>
   </section>
   <p>  </p>
+
+  <script>
+    // This script adds tap-to-reveal for card text on mobile devices
+    document.addEventListener('DOMContentLoaded', function() {
+      // Only run on small screens
+      if (window.innerWidth <= 600) {
+        // Get all the card divs inside the section
+        var cards = document.querySelectorAll('section > div');
+        cards.forEach(function(card) {
+          card.addEventListener('click', function(e) {
+            // Toggle the show-text class
+            card.classList.toggle('show-text');
+          });
+        });
+      }
+    });
+  </script>
+  <!-- On mobile, tap a card to show or hide its text. -->
 </body>
 </html>
