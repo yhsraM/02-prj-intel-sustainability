@@ -5,10 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intel: Sustainability Through the Ages</title>
   <link rel="stylesheet" href="style.css" />
-
   <!-- Favicon for browser tab -->
   <link rel="icon" type="image/svg+xml" href="img/intel-header-logo.svg" />
   <!-- You can use a .ico, .png, or .svg file for your favicon. Here we use the Intel logo SVG. -->
+  <style>
+    /* Simple style for navigation button */
+    .card-nav-btn {
+      display: block;
+      margin: 30px auto 0 auto;
+      padding: 10px 30px;
+      font-size: 1.1em;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+    .card-nav-btn.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+    /* Hide all cards by default */
+    .timeline-card { display: none; }
+    /* Show only visible cards */
+    .timeline-card.visible { display: flex; }
+    /* Keep cards in a row */
+    section {
+      flex-wrap: nowrap;
+      overflow-x: hidden;
+    }
+  </style>
 </head>
 <body>
 
@@ -35,7 +63,7 @@
   <section>
 
     <!-- Card 1: 1968 -->
-    <div style="background-image: url('img/intei img.jpg');">
+    <div class="timeline-card" style="background-image: url('img/intei img.jpg');">
       <div class="card-content">
         <h2>1968</h2>
         <h3>Intel Founded</h3>
@@ -48,7 +76,7 @@
     </div>
 
     <!-- Card 2: 1971 -->
-    <div style="background-image: url('img/2.jpg');">
+    <div class="timeline-card" style="background-image: url('img/2.jpg');">
       <div class="card-content">
         <h2>1971</h2>
         <h3>First Microprocessor</h3>
@@ -61,7 +89,7 @@
     </div>
 
     <!-- Card 3: 1978 -->
-    <div style="background-image: url('img/3.jpg');">
+    <div class="timeline-card" style="background-image: url('img/3.jpg');">
       <div class="card-content">
         <h2>1978</h2>
         <h3>8086 Processor</h3>
@@ -73,7 +101,7 @@
     </div>
 
     <!-- Card 4: 1985 -->
-    <div style="background-image: url('img/4.jpg');">
+    <div class="timeline-card" style="background-image: url('img/4.jpg');">
       <div class="card-content">
         <h2>1985</h2>
         <h3>386 Processor</h3>
@@ -86,7 +114,7 @@
     </div>
 
     <!-- Card 5: 2006 -->
-    <div style="background-image: url('img/ghg emissions.png');">
+    <div class="timeline-card" style="background-image: url('img/ghg emissions.png');">
       <div class="card-content">
         <h2>2006</h2>
         <h3>Peak GHG Emissions</h3>
@@ -100,7 +128,7 @@
     </div>
 
     <!-- Card 6: 2020 -->
-    <div style="background-image: url('img/rise strat.png');">
+    <div class="timeline-card" style="background-image: url('img/rise strat.png');">
       <div class="card-content">
         <h2>2020</h2>
         <h3>RISE Strategy</h3>
@@ -113,7 +141,7 @@
     </div>
 
     <!-- Card 7: 2022 -->
-    <div style="background-image: url('img/Net_zero_visual.webp');">
+    <div class="timeline-card" style="background-image: url('img/Net_zero_visual.webp');">
       <div class="card-content">
         <h2>2022</h2>
         <h3>Net-Zero By 2040</h3>
@@ -126,7 +154,7 @@
     </div>
 
     <!-- Card 8: 2023 -->
-    <div style="background-image: url('img/renew energy.jpg');">
+    <div class="timeline-card" style="background-image: url('img/renew energy.jpg');">
       <div class="card-content">
         <h2>2023</h2>
         <h3>Renewable Electricity</h3>
@@ -139,7 +167,7 @@
     </div>
 
     <!-- Card 9: 2024 -->
-    <div style="background-image: url('img/summit.jpg');">
+    <div class="timeline-card" style="background-image: url('img/summit.jpg');">
       <div class="card-content">
         <h2>2024</h2>
         <h3>Sustainability Summit</h3>
@@ -150,6 +178,8 @@
         </p>
       </div>
     </div>
+    <!-- Navigation Button -->
+    <button class="card-nav-btn hide">Show More</button>
   </section>
   <p>  </p>
 
@@ -167,6 +197,37 @@
           });
         });
       }
+    });
+
+    // Show only the first 3 cards initially, and hide the rest
+    const allCards = document.querySelectorAll('.timeline-card');
+    const showMoreBtn = document.querySelector('.card-nav-btn');
+    let visibleStart = 0;
+    const cardsPerPage = 3;
+
+    function updateCardVisibility() {
+      allCards.forEach((card, index) => {
+        if (index >= visibleStart && index < visibleStart + cardsPerPage) {
+          card.classList.add('visible');
+        } else {
+          card.classList.remove('visible');
+        }
+      });
+      // Hide or show the button based on the number of visible cards
+      if (visibleStart + cardsPerPage >= allCards.length) {
+        showMoreBtn.classList.add('hide');
+      } else {
+        showMoreBtn.classList.remove('hide');
+      }
+    }
+
+    // Initial setup
+    updateCardVisibility();
+
+    // Show next set of cards when the button is clicked
+    showMoreBtn.addEventListener('click', () => {
+      visibleStart += cardsPerPage;
+      updateCardVisibility();
     });
   </script>
   <!-- On mobile, tap a card to show or hide its text. -->
